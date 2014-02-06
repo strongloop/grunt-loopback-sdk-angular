@@ -1,4 +1,7 @@
-lib-cov
+.idea
+.project
+.DS_Store
+*.sublime*
 *.seed
 *.log
 *.csv
@@ -6,10 +9,8 @@ lib-cov
 *.out
 *.pid
 *.gz
-
-pids
-logs
-results
-
 npm-debug.log
+*.swp
+*.swo
 node_modules
+tmp
