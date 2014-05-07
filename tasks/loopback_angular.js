@@ -24,6 +24,9 @@ module.exports = function(grunt) {
   function runTask() {
     /*jshint validthis:true */
 
+    //need this to accomodate an input file that builds the loopback interface asynchronously
+    var done = this.async();
+    
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       ngModuleName: 'lbServices',
@@ -50,16 +53,34 @@ module.exports = function(grunt) {
       grunt.fail.warn(err);
     }
 
-    options.apiUrl = options.apiUrl || app.get('restApiRoot') || '/api';
+    var completeTask = function() {
+      options.apiUrl = options.apiUrl || app.get('restApiRoot') || '/api';
 
-    grunt.log.writeln('Generating %j for the API endpoint %j',
-      options.ngModuleName,
-      options.apiUrl);
+      grunt.log.writeln('Generating %j for the API endpoint %j',
+        options.ngModuleName,
+        options.apiUrl);
 
-    var script = generator.services(app, options.ngModuleName, options.apiUrl);
+      var script = generator.services(app, options.ngModuleName, options.apiUrl);
 
-    grunt.file.write(options.output, script);
+      grunt.file.write(options.output, script);
 
-    grunt.log.ok('Generated Angular services file %j', options.output);
+      grunt.log.ok('Generated Angular services file %j', options.output);
+
+      done();
+    };
+
+    var appReady = options.appReady,
+      appReadyMethod = app[appReady];
+
+    if (appReady) {
+      if (!appReadyMethod) {
+        grunt.fail.warn('An appReady method was specified but not found on the exported input object.');
+      }
+
+      //register with the app's ready callback handler
+      appReadyMethod(completeTask);  
+    } else {
+      completeTask();
+    }
   }
 };

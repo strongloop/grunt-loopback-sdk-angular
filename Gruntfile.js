@@ -64,7 +64,37 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'loopback_angular', 'nodeunit']);
+  grunt.registerTask('test:sync', ['clean', 'loopback_angular', 'nodeunit']);
+
+  // need a special config and fixture to test the async case
+  grunt.registerTask(
+    'test:async', 
+    'Configure the default options for the async test.',
+    function() {
+
+      grunt.config.set('loopback_angular', {
+        options: {
+          input: 'test/fixtures/app-async.js',
+          appReady: 'onReady'
+        },
+        default_options: {
+          options: {
+            output: 'tmp/default_options'
+          }
+        },
+        custom_options: {
+          options: {
+            output: 'tmp/custom_options',
+            ngModuleName: 'customServices',
+            apiUrl: 'http://custom/api/'
+          }
+        }
+      });
+
+      grunt.task.run('clean', 'loopback_angular', 'nodeunit');
+    });
+
+  grunt.registerTask('test', ['test:sync', 'test:async']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
