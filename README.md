@@ -36,7 +36,8 @@ If your LoopBack app (i.e. the `input` option for this grunt task) needs to perf
 EXAMPLE: your `app.js` might look something like this...
 
 ```
-var loopback = require('loopback'),
+var _ = require('underscore'),
+  loopback = require('loopback'),
   path = require('path'),
   app = module.exports = loopback(),
   started = new Date();
