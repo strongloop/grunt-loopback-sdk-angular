@@ -69,7 +69,7 @@ module.exports = function(grunt) {
   // need a special config and fixture to test the async case
   grunt.registerTask(
     'test:async', 
-    'Configure the default options for the async test.',
+    'Configure the fixture and options for the async test and run it.',
     function() {
 
       grunt.config.set('loopback_angular', {
