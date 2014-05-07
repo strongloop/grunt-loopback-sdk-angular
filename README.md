@@ -41,7 +41,7 @@ var loopback = require('loopback'),
   app = module.exports = loopback(),
   started = new Date();
 
-//create an 'appReady' callback handler so code that exports this file can know when the full loopback service is configured
+//create an 'appReady' callback handler so code that imports this file can know when the full loopback service is configured
 
 var onReadyCallbacks = [];
 app.onReady = function(cb) {
