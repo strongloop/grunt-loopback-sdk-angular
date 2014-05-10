@@ -36,150 +36,30 @@ If your LoopBack app (i.e. the `input` option for this grunt task) needs to perf
 EXAMPLE: your `app.js` might look something like this...
 
 ```
-var _ = require('underscore'),
-  loopback = require('loopback'),
-  path = require('path'),
-  app = module.exports = loopback(),
-  started = new Date();
-
-//create an 'appReady' callback handler so code that imports this file can know when the full loopback service is configured
-
-var onReadyCallbacks = [];
-app.onReady = function(cb) {
-  onReadyCallbacks.push(cb);
-};
-
-function doOnReady() {
-  _.each(onReadyCallbacks, function(cb) {
-    cb && cb();
-  });
-}
-
+var loopback = require('loopback'),
+  app = module.exports = loopback();
+  
 //do something asyncronously that gets me some model metadata I can use later
 var myAsyncThing = require('my-async-model-building-module');
 
 myAsyncThing.run(function(metadata) {
 
-  /*
-   * 1. Configure LoopBack models and datasources
-   *
-   * Read more at http://apidocs.strongloop.com/loopback#appbootoptions
-   */
-
+  // Configure LoopBack models and datasources
   app.boot(__dirname);
   
   //use the model metadata to introspectively register new models
   myAsyncThing.buildModels(metadata);
 
-  /*
-   * 2. Configure request preprocessing
-   *
-   *  LoopBack support all express-compatible middleware.
-   */
-
+  // other configuration as scaffolded by `slc lb project`
   app.use(loopback.favicon());
-  app.use(loopback.logger(app.get('env') === 'development' ? 'dev' : 'default'));
-
-  app.use(loopback.bodyParser());
-  app.use(loopback.methodOverride());
-
-  /*
-   * EXTENSION POINT
-   * Add your custom request-preprocessing middleware here.
-   * Example:
-   *   app.use(loopback.limit('5.5mb'))
-   */
-
-  /*
-   * 3. Setup request handlers.
-   */
-
-  // LoopBack REST interface
-  var apiPath = '/api';
-  app.use(loopback.cookieParser('secret'));
-  app.use(loopback.token({model: app.models.accessToken}));
-  app.use(apiPath, loopback.rest());
-
-  // API explorer (if present)
-  var explorerPath = '/explorer';
-  try {
-    var explorer = require('loopback-explorer');
-    app.use(explorerPath, explorer(app, { basePath: apiPath }));
-  } catch(e){
-    // ignore errors, explorer stays disabled
-  }
-
-  /*
-   * EXTENSION POINT
-   * Add your custom request-handling middleware here.
-   * Example:
-   *   app.use(function(req, resp, next) {
-   *     if (req.url == '/status') {
-   *       // send status response
-   *     } else {
-   *       next();
-   *     }
-   *   });
-   */
-    
-  // Let express routes handle requests that were not handled
-  // by any of the middleware registered above.
-  // This way LoopBack REST and API Explorer take precedence over
-  // express routes.
-  app.use(app.router);
-
-  // The static file server should come after all other routes
-  // Every request that goes through the static middleware hits
-  // the file system to check if a file exists.
-  app.use(loopback.static(path.join(__dirname, '..', 'public')));
-
-  // Requests that get this far won't be handled
-  // by any middleware. Convert them into a 404 error
-  // that will be handled later down the chain.
-  app.use(loopback.urlNotFound());
-
-  /*
-   * 4. Setup error handling strategy
-   */
-
-  /*
-   * EXTENSION POINT
-   * Add your custom error reporting middleware here
-   * Example:
-   *   app.use(function(err, req, resp, next) {
-   *     console.log(req.url, ' failed: ', err.stack);
-   *     next(err);
-   *   });
-   */
-
-  // The ultimate error handler.
-  app.use(loopback.errorHandler());
-
-
-  /*
-   * 5. Add a basic application status route at the root `/`.
-   *
-   * (remove this to handle `/` on your own)
-   */
-
-  // app.get('/', loopback.status());
-
+  // etc.
   app.enableAuth();
 
   //app API is ready to go -- time to alert anyone who cares (lookin' at you grunt-loopback-angular)
-  doOnReady();
+  app.emit('ready');
 
   if(require.main === module) {
-    require('http').createServer(app).listen(app.get('port'), app.get('host'), function(){
-      var baseUrl = 'http://' + app.get('host') + ':' + app.get('port');
-      if (explorerPath) {
-        console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
-      } else {
-        console.log(
-          'Run `npm install loopback-explorer` to enable the LoopBack explorer');
-      }
-      console.log('LoopBack server listening @ %s%s', baseUrl, '/');
-    });
+    //start the http server
   }
 });
 
@@ -194,7 +74,7 @@ module.exports = function(grunt) {
       services: {
         options: {
           input: './app.js',
-          appReady: 'onReady',
+          appReadyEvent: 'ready',
           output: '../client/app/scripts/lb-services.js'
         }
       }

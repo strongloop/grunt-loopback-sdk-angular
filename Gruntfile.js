@@ -73,22 +73,17 @@ module.exports = function(grunt) {
     function() {
 
       grunt.config.set('loopback_angular', {
-        options: {
-          input: 'test/fixtures/app-async.js',
-          appReady: 'onReady'
-        },
-        default_options: {
+        services: {
           options: {
-            output: 'tmp/default_options'
-          }
-        },
-        custom_options: {
-          options: {
-            output: 'tmp/custom_options',
-            ngModuleName: 'customServices',
-            apiUrl: 'http://custom/api/'
+            input: 'test/fixtures/app-async.js',
+            appReadyEvent: 'ready',
+            output: 'tmp/async_app'
           }
         }
+      });
+
+      grunt.config.set('nodeunit', {
+        tests: ['test/async/*_test.js']
       });
 
       grunt.task.run('clean', 'loopback_angular', 'nodeunit');

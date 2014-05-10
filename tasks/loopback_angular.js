@@ -24,7 +24,8 @@ module.exports = function(grunt) {
   function runTask() {
     /*jshint validthis:true */
 
-    //need this to accomodate an input file that builds the loopback interface asynchronously
+    // need this to accomodate an input file that builds the loopback 
+    // interface asynchronously
     var done = this.async();
     
     // Merge task-specific and/or target-specific options with these defaults.
@@ -69,16 +70,9 @@ module.exports = function(grunt) {
       done();
     };
 
-    var appReady = options.appReady,
-      appReadyMethod = app[appReady];
-
-    if (appReady) {
-      if (!appReadyMethod) {
-        grunt.fail.warn('An appReady method was specified but not found on the exported input object.');
-      }
-
-      //register with the app's ready callback handler
-      appReadyMethod(completeTask);  
+    if (options.appReadyEvent) {
+      //register with the app's ready event
+      app.on(options.appReadyEvent, completeTask);  
     } else {
       completeTask();
     }
