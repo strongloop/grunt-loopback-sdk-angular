@@ -1,7 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
-var parse = require('loopback-angular/parse-helper');
+var parse = require('loopback-sdk-angular/parse-helper');
 
 /*
   ======== A Handy Little Nodeunit Reference ========

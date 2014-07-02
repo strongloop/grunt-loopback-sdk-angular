@@ -1,6 +1,6 @@
 /*
- * grunt-loopback-angular
- * https://github.com/strongloop/grunt-loopback-angular
+ * grunt-loopback-sdk-angular
+ * https://github.com/strongloop/grunt-loopback-sdk-angular
  *
  * Copyright (c) 2014 StrongLoop, Inc.
  * Licensed under the MIT license.
@@ -9,7 +9,7 @@
 'use strict';
 
 var path = require('path');
-var generator = require('loopback-angular');
+var generator = require('loopback-sdk-angular');
 
 module.exports = function(grunt) {
 
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
   // creation: http://gruntjs.com/creating-tasks
 
   grunt.registerMultiTask(
-    'loopback_angular',
+    'loopback_sdk_angular',
     'Grunt plugin for auto-generating Angular $resource services for LoopBack',
     runTask);
 
