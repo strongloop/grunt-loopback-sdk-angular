@@ -1,6 +1,6 @@
 /*
- * grunt-loopback-angular
- * https://github.com/strongloop/grunt-loopback-angular
+ * grunt-loopback-sdk-angular
+ * https://github.com/strongloop/grunt-loopback-sdk-angular
  *
  * Copyright (c) 2014 StrongLoop, Inc.
  * Licensed under the MIT license.
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    loopback_angular: {
+    loopback_sdk_angular: {
       options: {
         input: 'test/fixtures/app.js'
       },
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'loopback_angular', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'loopback_sdk_angular', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
