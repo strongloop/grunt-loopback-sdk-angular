@@ -28,7 +28,7 @@ grunt.loadNpmTasks('grunt-loopback-sdk-angular');
 ## Tasks and configuration
 
 See the official
-[LoopBack AngularJS SDK documentation](http://docs.strongloop.com/display/DOC/AngularJS+JavaScript+SDK#AngularJSJavaScriptSDK-Gruntplugin)
+[LoopBack AngularJS SDK documentation](http://docs.strongloop.com/display/LB/AngularJS+JavaScript+SDK#AngularJSJavaScriptSDK-Gruntplugin)
 for the description of tasks provided by this Grunt plugin.
 
 ## Contributing
