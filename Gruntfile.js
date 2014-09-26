@@ -32,6 +32,7 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     loopback_sdk_angular: {
       options: {
+        clientModelConfig: 'test/fixtures/config.js',
         input: 'test/fixtures/app.js'
       },
       default_options: {
