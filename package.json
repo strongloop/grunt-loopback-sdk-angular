@@ -15,10 +15,7 @@
   "bugs": {
     "url": "https://github.com/strongloop/grunt-loopback-sdk-angular/issues"
   },
-  "license": {
-    "name": "Dual MIT/StrongLoop",
-    "url": "https://github.com/strongloop/grunt-loopback-sdk-angular/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "engines": {
     "node": ">= 0.8.0"
   },
