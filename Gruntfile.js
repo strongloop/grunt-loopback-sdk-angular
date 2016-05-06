@@ -1,3 +1,8 @@
+// Copyright IBM Corp. 2014. All Rights Reserved.
+// Node module: grunt-loopback-sdk-angular
+// This file is licensed under the MIT License.
+// License text available at https://opensource.org/licenses/MIT
+
 /*
  * grunt-loopback-sdk-angular
  * https://github.com/strongloop/grunt-loopback-sdk-angular
