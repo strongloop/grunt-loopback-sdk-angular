@@ -35,6 +35,11 @@ module.exports = function(grunt) {
       apiUrl: undefined
     });
 
+    var modelConfig = options.clientModelConfig;
+    if (modelConfig && !grunt.file.exists(modelConfig)) {
+      grunt.fail.warn('Client model config file ' + modelConfig + ' not found');
+    }
+
     var appFile = options.input;
     if (!appFile)
       grunt.fail.warn('Missing mandatory option "input".');
@@ -61,7 +66,12 @@ module.exports = function(grunt) {
       options.ngModuleName,
       options.apiUrl);
 
-    var script = generator.services(app, options.ngModuleName, options.apiUrl);
+    var script = generator.services(
+      app,
+      options.ngModuleName,
+      options.apiUrl,
+      modelConfig
+    );
 
     grunt.file.write(options.output, script);
 
