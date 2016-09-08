@@ -50,6 +50,14 @@ module.exports = function(grunt) {
           ngModuleName: 'customServices',
           apiUrl: 'http://custom/api/'
         }
+      },
+      ignore_models_option: {
+        options: {
+          output: 'tmp/ignore_models_option',
+          ngModuleName: 'modelsToIgnoreService',
+          apiUrl: 'http://ignore_models/api/',
+          modelsToIgnore : ['CustomModel_1','CustomModel_2']
+        }
       }
     },
 

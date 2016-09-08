@@ -51,5 +51,13 @@ exports.loopback_angular = {
     test.equal(parse.moduleName(script), 'customServices');
     test.equal(parse.baseUrl(script), 'http://custom/api');
     test.done();
+  },
+  
+  ignore_models_option: function(test) {
+    var script = grunt.file.read('tmp/ignore_models_option');
+    test.ok(script.indexOf('CustomModel_1') === -1);
+    test.ok(script.indexOf('CustomModel_2') === -1);
+    test.ok(script.indexOf('CustomModel_3') !== -1);
+    test.done();
   }
 };
