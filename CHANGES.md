@@ -1,3 +1,11 @@
+2016-09-13, Version 1.3.0
+=========================
+
+ * modelsToIgnore option support for generator (Aquid Shahwar)
+
+ * Update URLs in CONTRIBUTING.md (#26) (Ryan Graham)
+
+
 2016-05-30, Version 1.2.0
 =========================
 
