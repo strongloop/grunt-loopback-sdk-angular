@@ -17,13 +17,13 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">=4"
   },
   "scripts": {
     "test": "grunt test"
   },
   "dependencies": {
-    "loopback-sdk-angular": "^1.10.0"
+    "loopback-sdk-angular": "^3.0.0"
   },
   "devDependencies": {
     "chai": "^1.9.1",
