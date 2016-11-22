@@ -1,7 +1,7 @@
 {
   "name": "grunt-loopback-sdk-angular",
   "description": "Grunt plugin for auto-generating Angular $resource services for LoopBack",
-  "version": "1.3.0",
+  "version": "3.0.0-alpha.1",
   "homepage": "https://github.com/strongloop/grunt-loopback-sdk-angular",
   "author": {
     "name": "StrongLoop, Inc.",
