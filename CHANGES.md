@@ -1,3 +1,11 @@
+2016-11-23, Version 3.0.0
+=========================
+
+ * Drop support for Node v0.10 and v0.12 (Miroslav Bajtoš)
+
+ * Start the development of the next major version (Miroslav Bajtoš)
+
+
 2016-09-13, Version 1.3.0
 =========================
 
