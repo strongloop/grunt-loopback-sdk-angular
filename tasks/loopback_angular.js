@@ -50,9 +50,7 @@ module.exports = function(grunt) {
       app = require(path.resolve(appFile));
       grunt.log.ok('Loaded LoopBack app %j', appFile);
     } catch (e) {
-      var err = new Error('Cannot load LoopBack app ' + appFile);
-      err.origError = e;
-      grunt.fail.warn(err);
+      grunt.log.errorlns('Error loading LoopBack app ', e);
     }
 
     options.apiUrl = options.apiUrl || app.get('restApiRoot') || '/api';
