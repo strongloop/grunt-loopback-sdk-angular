@@ -1,3 +1,23 @@
+2018-06-07, Version 3.1.0
+=========================
+
+ * Update dependencies to the latest versions (Miroslav Bajtoš)
+
+ * Drop Node 4.x, add travis and npmrc (Miroslav Bajtoš)
+
+ * Update LICENSE (Diana Lau)
+
+ * Add CODEOWNER file (Diana Lau)
+
+ * Create Issue and PR Templates (#32) (Sakib Hasan)
+
+ * Replicate new issue_template from loopback (Siddhi Pai)
+
+ * Replicate issue_template from loopback repo (Siddhi Pai)
+
+ * Update paid support URL (Siddhi Pai)
+
+
 2016-11-23, Version 3.0.0
 =========================
 
