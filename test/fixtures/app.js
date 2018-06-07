@@ -6,20 +6,12 @@
 var loopback = require('loopback');
 var app = loopback();
 
-// Setup default datasources for autoAttach()
-app.dataSource('db', { connector: 'memory', defaultForType: 'db' });
-app.dataSource('mail', { connector: 'mail', defaultForType: 'mail' });
+app.dataSource('db', { connector: 'memory'});
 
-// Attach all built-in models
-loopback.autoAttach();
-
-// Get loopback model reference 
-var Model = loopback.Model;
-
-// Create custom models extending Model 
-var CustomModel_1 = Model.extend('CustomModel_1');
-var CustomModel_2 = Model.extend('CustomModel_2');
-var CustomModel_3 = Model.extend('CustomModel_3');
+// Create custom models extending Model
+var CustomModel_1 = app.registry.createModel('CustomModel_1');
+var CustomModel_2 = app.registry.createModel('CustomModel_2');
+var CustomModel_3 = app.registry.createModel('CustomModel_3');
 
 // Attach the models to app instance and memory datasource
 app.model(CustomModel_1, { dataSource: 'db' });
