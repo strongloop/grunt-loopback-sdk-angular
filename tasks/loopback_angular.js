@@ -16,7 +16,7 @@
 var path = require('path');
 var generator = require('loopback-sdk-angular');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
@@ -26,8 +26,17 @@ module.exports = function(grunt) {
     'Grunt plugin for auto-generating Angular $resource services for LoopBack',
     runTask);
 
+  function generateSDK(app, options) {
+    var script = generator.services(app, options);
+
+    grunt.file.write(options.output, script);
+
+    grunt.log.ok('Generated Angular services file %j', options.output);
+  }
+
   function runTask() {
     /*jshint validthis:true */
+    var done = this.async();
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
@@ -61,10 +70,14 @@ module.exports = function(grunt) {
       options.ngModuleName,
       options.apiUrl);
 
-    var script = generator.services(app, options);
-
-    grunt.file.write(options.output, script);
-
-    grunt.log.ok('Generated Angular services file %j', options.output);
+    if (app.booting) {
+      app.on('booted', function () {
+        generateSDK(app, options);
+        done();
+      });
+    } else {
+      generateSDK(app, options);
+      done();
+    }
   }
 };
