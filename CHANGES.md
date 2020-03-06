@@ -1,3 +1,11 @@
+2020-03-06, Version 3.2.1
+=========================
+
+ * chore: update copyrights years (Agnes Lin)
+
+ * add lts announcement (jannyHou)
+
+
 2018-08-24, Version 3.2.0
 =========================
 
