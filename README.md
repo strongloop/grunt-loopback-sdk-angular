@@ -1,12 +1,17 @@
 # grunt-loopback-sdk-angular
 
-**NOTE: The grunt-loopback-sdk-angular module supersedes [grunt-loopback-angular](https://www.npmjs.org/grunt-loopback-angular). Please update your package.json and Gruntfile accordingly.**
+**⚠️ LoopBack 3 is in Maintenance LTS mode, only critical bugs and critical
+security fixes will be provided. (See
+[Module Long Term Support Policy](#module-long-term-support-policy) below.)**
 
-This module is in Active LTS mode, new features are no longer accepted.
-(See [Module Long Term Support Policy](#module-long-term-support-policy) below.)
-LoopBack 3 users looking for new features are encouraged to upgrade to LoopBack 4. Refer to [loopback-next#1849](https://github.com/strongloop/loopback-next/issues/1849) for more information on how to upgrade.
+We urge all LoopBack 3 users to migrate their applications to LoopBack 4 as
+soon as possible. Refer to our
+[Migration Guide](https://loopback.io/doc/en/lb4/migration-overview.html)
+for more information on how to upgrade.
 
-> Grunt plugin for auto-generating Angular $resource services for LoopBack
+## Overview
+
+Grunt plugin for auto-generating Angular $resource services for LoopBack
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
@@ -49,7 +54,6 @@ This module adopts the [Module Long Term Support (LTS)](http://github.com/CloudN
 
 | Version | Status          | Published | EOL      |
 | ------- | --------------- | --------- | -------- |
-| 3.x     | Active LTS      | Nov 2016  | Dec 2019 |
-| 1.x     | Maintenance LTS | Jul 2014  | Apr 2019 |
+| 3.x     | Maintenance LTS | Nov 2016  | Dec 2020 |
 
 Learn more about our LTS plan in the [docs](https://loopback.io/doc/en/contrib/Long-term-support.html).
